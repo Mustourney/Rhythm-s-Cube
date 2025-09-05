@@ -1,1 +1,1 @@
-A rhythm game made by using OpenGL with Rust
+A rhythm game made by using OpenGL and OpenTK with C#
