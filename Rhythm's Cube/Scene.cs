@@ -3,16 +3,18 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 
 class Scene
 {
-    public void Call_On_Update_Frame(FrameEventArgs args, KeyboardState key_input, out bool close_the_window)
+    public bool close_the_window = false;
+
+    public void Call_On_Update_Frame(FrameEventArgs args, KeyboardState key_input)
     {
         current_scene.On_Update_Frame(args, key_input);
-        close_the_window = current_scene.close_the_window;
+        close_the_window = current_scene.Close_the_window;
     }
 
-    public void Call_On_Load(out bool close_the_window)
+    public void Call_On_Load()
     {
         current_scene.On_Load();
-        close_the_window = current_scene.close_the_window;
+        close_the_window = current_scene.Close_the_window;
     }
 
     public void Call_On_Render_Frame(FrameEventArgs args)

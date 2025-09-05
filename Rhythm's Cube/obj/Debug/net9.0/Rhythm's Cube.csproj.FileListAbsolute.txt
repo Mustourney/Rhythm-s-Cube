@@ -29,3 +29,4 @@
 /home/mustourney/Desktop/Rhythm_Cube/Rhythm's Cube/obj/Debug/net9.0/Rhythm's Cube.pdb
 /home/mustourney/Desktop/Rhythm_Cube/Rhythm's Cube/obj/Debug/net9.0/Rhythm's Cube.genruntimeconfig.cache
 /home/mustourney/Desktop/Rhythm_Cube/Rhythm's Cube/obj/Debug/net9.0/ref/Rhythm's Cube.dll
+/home/mustourney/Desktop/Rhythm_Cube/Rhythm's Cube/bin/Debug/net9.0/StbImageSharp.dll

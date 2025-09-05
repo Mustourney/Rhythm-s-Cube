@@ -5,14 +5,11 @@ public class Shader
     public int handle;
     public bool is_there_error = false;
 
-    public Shader(string vertex_path, string fragment_path, bool use_current_dir)
+    public Shader(string vertex_path, string fragment_path)
     {
-        if (use_current_dir)
-        {
-            string project_dir = Directory.GetCurrentDirectory();
-            vertex_path = $"{project_dir}/{vertex_path}";
-            fragment_path = $"{project_dir}/{fragment_path}";
-        }
+        string project_dir = Directory.GetCurrentDirectory();
+        vertex_path = $"{project_dir}/{vertex_path}";
+        fragment_path = $"{project_dir}/{fragment_path}";
 
         if (File.Exists(vertex_path) == false)
         {
@@ -70,6 +67,7 @@ public class Shader
             is_there_error = true;
             string infoLog = GL.GetProgramInfoLog(handle);
             Console.WriteLine(infoLog);
+            Console.Write(vertex_path);
         }
 
         GL.DetachShader(handle, vertex_shader);
@@ -81,6 +79,13 @@ public class Shader
     public void Use()
     {
         GL.UseProgram(handle);
+    }
+
+    public void Set_Int(string name, int value)
+{
+        int location = GL.GetUniformLocation(handle, name);
+
+        GL.Uniform1(location, value);
     }
 
     private bool disposedValue = false;

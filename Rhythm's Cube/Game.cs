@@ -39,8 +39,8 @@ class Game : GameWindow
     {
         base.OnLoad();
 
-        current_scene.Call_On_Load(out bool close_the_window);
-        if (close_the_window)
+        current_scene.Call_On_Load();
+        if (current_scene.close_the_window)
         {
             Close();
         }
@@ -50,8 +50,8 @@ class Game : GameWindow
     {
         base.OnUpdateFrame(args);
 
-        current_scene.Call_On_Update_Frame(args, KeyboardState, out bool close_the_window);
-        if (close_the_window)
+        current_scene.Call_On_Update_Frame(args, KeyboardState);
+        if (current_scene.close_the_window)
         {
             Close();
         }

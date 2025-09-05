@@ -5,7 +5,8 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 class Menu : Scene
 {
     private List<Shader> active_shaders = new();
-    public bool close_the_window = false;
+    private List<Texture> active_textures = new();
+    public bool Close_the_window = false;
 
     private int vertex_array_object;
     private int vertex_buffer_object;
@@ -30,21 +31,41 @@ class Menu : Scene
         GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
         GL.EnableVertexAttribArray(0);
 
-        Shader my_first_shader = new("Shaders/shader.vert", "Shaders/shader.frag", true);
+        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
+        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
+
+        float[] borderColor = { 1.0f, 1.0f, 0.0f, 1.0f };
+        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureBorderColor, borderColor);
+
+        // GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
+        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+
+        Shader my_first_shader = new("Shaders/shader.vert", "Shaders/shader.frag");
 
         if (my_first_shader.is_there_error)
         {
-            
+            Close_the_window = true;
+            return;
         }
+
         active_shaders.Add(my_first_shader);
         my_first_shader.Use();
+
+        Texture texture = new("Textures/texture.png");
+        if (texture.is_there_error)
+        {
+            Close_the_window = true;
+            return;
+        }
+
+        active_textures.Add(texture);
     }
 
     public void On_Update_Frame(FrameEventArgs args, KeyboardState key_input)
     {
         if (key_input.IsKeyPressed(Keys.Escape))
         {
-            close_the_window = true;
+            Close_the_window = true;
         }
     }
 
@@ -52,10 +73,17 @@ class Menu : Scene
     {
         GL.Clear(ClearBufferMask.ColorBufferBit);
 
+        foreach (Texture texture in active_textures)
+        {
+            texture.Use(TextureUnit.Texture0);
+        }
+
         foreach (Shader shader in active_shaders)
         {
             shader.Use();
         }
+
+        GL.DrawElements(PrimitiveType.Triangles, 3, DrawElementsType.UnsignedInt, 0);
 
         GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
     }

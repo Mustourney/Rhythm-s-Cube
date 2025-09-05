@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Rhythm\'s Cube")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c49949351f138b6fc8cf7a4dcbf0658e2f5ab955")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3bea08fb50d8f0997e47bad5b6d2e916ea32a87c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Rhythm\'s Cube")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Rhythm\'s Cube")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
